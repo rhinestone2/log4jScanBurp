@@ -1,94 +1,73 @@
 # log4jScan
 
-用于帮助企业内部快速扫描log4j的jndi漏洞的burp插件
+A burp plugin used to help enterprises quickly scan log4j's jndi vulnerabilities.
+I found this on twitter and decided to translate it in english. All credits go to [https://github.com/sobinge][sobinge]
 
-# 免责声明
+# Disclaimer
 
-该工具仅用于安全自查检测
+This tool should only be used on your own systems or systems that you have permission to test
 
-由于传播、利用此工具所提供的信息而造成的任何直接或者间接的后果及损失，均由使用者本人负责，作者不为此承担任何责任。
+You are responsible for your actions. You are responsible for any direct or indirect consequences and losses caused by the use of this tool and/or the information provided in this repository. The author and me do not assume any responsibility for anything.
 
-本人拥有对此工具的修改和解释权。未经网络安全部门及相关部门允许，不得善自使用本工具进行任何攻击活动，不得以任何方式将其用于商业目的。
+The original author holds the right to modify and interpret this tool. Without the permission of the network security department and relevant departments, you may not use this tool to conduct testing or attacks. You may not use it for commercial purposes in any way.
 
-# 简介
+# Introduction
 
-log4jScan 一个用于企业内部排查log4j漏洞的插件
+log4jScan is a burpsuite plugin for identifying log4j vulnerabilities
 
-该插件会对BurpSuite传进来的请求包进行检测
+This plugin will detect incoming request packets from BurpSuite
 
-目前的功能如下
-- 远程命令执行
+The current functions are as follows
+- Remote command execution
 
-# 检测规则
+# detection rules
 
-暂时只支持以下类型,进行扫描log4j的jndi漏洞
+Currently only the following types are supported to scan for jndi vulnerabilities in log4j
 
 - GET
 - POST
-- Cookie
+- Cookies
 - JSON
 - Xml
 - Body
 - Header
 
-# 请注意!!!!
+# caution!!!!
 
-<font color=red>下载完毕以后,请务必打开 /resources/config.yml 看看配置文件,里面有很多自定义的功能,可以自由选择!!</font>
+<font color=red>After downloading, be sure to open /resources/config.yml to see the configuration file, there are many custom functions in it, you can choose freely!!</font>
 
-推荐使用burp2.x的版本,因为在新版burp中,被动扫描会自动成多线程扫描,扫描速度会快很多很多
+It is recommended to use a burp2.x version, because in the new version of burp, passive scanning is automatically multi-threaded, so the scanning speed will be much faster.
 
-推荐使用burp2.x的版本,因为在新版burp中,被动扫描会自动成多线程扫描,扫描速度会快很多很多
+Please download the source code by yourself and compile it with the same version of jdk as BurpSuite, thank you
 
-推荐使用burp2.x的版本,因为在新版burp中,被动扫描会自动成多线程扫描,扫描速度会快很多很多
-
-请自行下载源码,使用与BurpSuite同版本的jdk进行编译,谢谢
-
-请自行下载源码,使用与BurpSuite同版本的jdk进行编译,谢谢
-
-请自行下载源码,使用与BurpSuite同版本的jdk进行编译,谢谢
-
-请自行下载源码,使用与BurpSuite同版本的jdk进行编译,谢谢
-
-请自行下载源码,使用与BurpSuite同版本的jdk进行编译,谢谢
-
-请自行下载源码,使用与BurpSuite同版本的jdk进行编译,谢谢
-
-请自行下载源码,使用与BurpSuite同版本的jdk进行编译,谢谢
-
-请自行下载源码,使用与BurpSuite同版本的jdk进行编译,谢谢
-
-请自行下载源码,使用与BurpSuite同版本的jdk进行编译,谢谢
-
-请自行下载源码,使用与BurpSuite同版本的jdk进行编译,谢谢
-
-# 编译方法
+# compile method
 
 <details>
-<summary><b>编译方法</b></summary>
+<summary><b>Compile method</b></summary>
 
-这是一个 java maven项目
+This is a java maven project
 
-导入idea,打开刚刚好下载好的源码
+Import the idea and open the source code that was just downloaded
 
 ![](./images/1.png)
 
-打开: /log4jScan/pom.xml 安装对应的包,第一次安装依赖包需要比较久,慢慢等不要急
+Open: /log4jScan/pom.xml to install the corresponding package. It takes a long time to install the dependency packages for the first time, so don’t rush it.
 
 ![](./images/2.png)
 
 ![](./images/3.png)
 
-编译文件地址: /log4jScan/target/log4jScan/
+Compiled file location: /log4jScan/target/log4jScan/
 
-jar包地址: /log4jScan/target/log4jScan/log4jScan.jar
+Jar package location: /log4jScan/target/log4jScan/log4jScan.jar
 
-项目配置文件地址: /log4jScan/target/log4jScan/resources/config.yml
+Project configuration file location: /log4jScan/target/log4jScan/resources/config.yml
 
-接着拿着这个jar包, 导入BurpSuite即可
+Then import the jar file into BurpSuite
 
 </details>
 
-# 安装方法
+# installation method
 
 ![](./images/4.png)
 
@@ -96,20 +75,20 @@ jar包地址: /log4jScan/target/log4jScan/log4jScan.jar
 
 ![](./images/6.png)
 
-# 使用方法
+# Instructions
 
-我们正常去访问网站, 如果站点的某个请求出现了,那么该插件就会去尝试检测
+Browse the website, and if a request from the site occurs, the plugin will try to detect
 
-访问完毕以后, 插件就会自动去进行扫描
+After the access is completed, the plug-in will automatically scan
 
-如果有结果那么插件就会在以下地方显示
+If there is a finding, the plugin will display it in the following places
 - Tag
 - Extender
 - Scanner-Issue activity
 
-# 问题查看
+# Question View
 
-目前有这几个地方可以查看
+Here are a few places to check
 
 ![](./images/7.png)
 
@@ -117,47 +96,47 @@ jar包地址: /log4jScan/target/log4jScan/log4jScan.jar
 
 ![](./images/9.png)
 
-# tag界面查看漏洞情况
+# tag interface to view vulnerabilities
 
-```
-现在可以通过tag界面查看漏洞情况了
+````
+Vulnerabilities can now be viewed through the tag interface
 
-分别会返回
-- request parameter no eligible = 请求参数不符合条件(扫描类型设置中控制)
-- the number of website problems has exceeded = exceeded 超出网站问题的数量
-- the number of website scans exceeded = 超出网站可扫描次数
-- waiting for test results = 等待测试结果
-- [+] found log4j command execution = 查找到log4j命令执行
-- [-] not found log4j command execution = 没有查找到log4j命令执行
-- [x] scan task timed out = 扫描任务超时
-- [x] unknown error = 未知的错误
-```
+will return respectively
+- request parameter no eligible = request parameter is not eligible (controlled in scan type settings)
+- the number of website problems has exceeded = exceeded
+- the number of website scans exceeded = the number of website scans exceeded
+- waiting for test results = waiting for test results
+- [+] found log4j command execution = found log4j command execution
+- [-] not found log4j command execution = No log4j command execution found
+- [x] scan task timed out = scan task timed out
+- [x] unknown error = unknown error
+````
 
-# 疑难杂症解决
+# Troubleshooting
 
-假如扫描出问题了,想要重新扫描怎么办?
+What if there is a problem with the scan and I want to rescan?
 
-例如tag一直出现如下问题:
-- the number of website problems has exceeded = exceeded 超出网站问题的数量
-- the number of website scans exceeded = 超出网站可扫描次数
+For example, tag has the following problems:
+- the number of website problems has exceeded = exceeded
+- the number of website scans exceeded = the number of website scans exceeded
 
-解决方案:
+solution:
 ![](./images/11.png)
 
-# 如何切换dnslog的问题
+# How to switch the problem of dnslog
 
-编译完毕以后,进入log4j文件夹,进入resources目录,打开config.yml
+After compiling, enter the log4j folder, enter the resources directory, and open config.yml
 
-如下:
+as follows:
 ![](./images/12.png)
 
-如果是想换成 DnsLogCn/BurpDnsLog 的话,只需要替换 provider这个值为对应的即可
+If you want to replace it with DnsLogCn/BurpDnsLog, you only need to replace the value of the provider with the corresponding value.
 
-如果想使用Ceye,那就需要如下操作:
+If you want to use Ceye, you need to do the following:
 
 ![](./images/14.png)
 
-获取token与Identifier
+Get token and Identifier
 
-然后打开config.yml,填写成如下样子,如何重新安装插件即可:
+Then open config.yml and fill it out as follows, how to reinstall the plugin:
 ![](./images/15.png)
